@@ -2,8 +2,14 @@ import {StatusBar} from 'expo-status-bar'
 import {StyleSheet, Text, View} from 'react-native'
 import * as SplashScreen from 'expo-splash-screen'
 import {useEffect} from 'react'
+import {NavigationContainer} from '@react-navigation/native'
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import Agree from './src/Pages/Agree'
+import Welcome from './src/Pages/Welcome'
 
 SplashScreen.preventAutoHideAsync()
+
+const Stack = createNativeStackNavigator()
 
 export default function App() {
     useEffect(() => {
@@ -11,20 +17,12 @@ export default function App() {
             SplashScreen.hideAsync()
         }, 2500)
     }, [])
-
     return (
-        <View style={styles.container}>
-            <Text>Hey!</Text>
-            <StatusBar style="auto" />
-        </View>
+        <NavigationContainer>
+            <Stack.Navigator screenOptions={{headerShown: false}}>
+                <Stack.Screen name="Agree" component={Agree} />
+                <Stack.Screen name="Start" component={Welcome} />
+            </Stack.Navigator>
+        </NavigationContainer>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-})
