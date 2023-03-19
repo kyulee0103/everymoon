@@ -1,4 +1,4 @@
-import {Text, View} from 'react-native'
+import {Button, Text, View} from 'react-native'
 import styled from 'styled-components/native'
 
 const Total = styled.SafeAreaView`
@@ -41,7 +41,7 @@ const Middle = styled.Text`
     line-height: 36px;
     color: #294747;
 `
-function Welcome() {
+function Welcome({navigation}) {
     return (
         <Total>
             <Contents>
@@ -51,6 +51,12 @@ function Welcome() {
                 <Btn>
                     <BtnText>시작하기</BtnText>
                 </Btn>
+                <Button
+                    onPress={() => {
+                        navigation.push('Main')
+                    }}
+                    title="홈으로 가기"
+                />
             </Contents>
         </Total>
     )
