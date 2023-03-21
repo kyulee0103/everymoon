@@ -1,4 +1,6 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import {format, getMonth, getDate} from 'date-fns'
+import {useEffect, useState} from 'react'
 import {Text, View} from 'react-native'
 import styled from 'styled-components/native'
 
@@ -52,6 +54,23 @@ function Calendar({navigation}) {
     let date = new Date()
     const month = getMonth(date)
     const day = getDate(date)
+    const [myData, setMyData] = useState()
+
+    useEffect(() => {
+        const getPeriodData = async () => {
+            try {
+                const storageData = JSON.parse(await AsyncStorage.getItem('periodData'))
+                if (storageData) {
+                    console.log('hey get the data!')
+                    console.log(storageData)
+                    setMyData(storageData)
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        getPeriodData()
+    }, [])
 
     return (
         <Total>
@@ -60,6 +79,7 @@ function Calendar({navigation}) {
                     {month}월 {day}일, 오늘
                 </Top>
                 <Top>월경 3일 전</Top>
+                <Top></Top>
                 <Middle>곧 월경이 시작될 거에요.</Middle>
                 <Block />
                 <Btn>

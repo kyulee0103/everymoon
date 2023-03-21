@@ -1,4 +1,6 @@
-import {Button, Text, View} from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import {useRef, useState} from 'react'
+import {Button, Keyboard, Text, TextInput, View} from 'react-native'
 import styled from 'styled-components/native'
 
 const Total = styled.SafeAreaView`
@@ -41,7 +43,44 @@ const Middle = styled.Text`
     line-height: 36px;
     color: #294747;
 `
+const Test = styled.TextInput`
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px;
+`
+
 function Welcome({navigation}) {
+    const secondRef = useRef()
+    const thirdRef = useRef()
+    const [inputs, setInputs] = useState({
+        year: '',
+        month: '',
+        date: '',
+    })
+    // const [dataList, setDataList] = useState([])
+    const {year, month, date} = inputs
+
+    const onChange = (keyValue, e) => {
+        const {text} = e.nativeEvent
+        setInputs({
+            ...inputs,
+            [keyValue]: text,
+        })
+    }
+    const handleSubmit = async () => {
+        try {
+            const newData = [{year: year, month: month, date: date}]
+            await AsyncStorage.setItem('periodData', JSON.stringify(newData))
+        } catch (e) {
+            console.log('error : ', e)
+        }
+    }
+
+    console.log('year : ', year)
+    console.log('month : ', month)
+    console.log('date : ', date)
     return (
         <Total>
             <Contents>
@@ -54,8 +93,35 @@ function Welcome({navigation}) {
                 <Button
                     onPress={() => {
                         navigation.push('Main')
+                        handleSubmit()
                     }}
                     title="홈으로 가기"
+                />
+                <Test
+                    value={year}
+                    onChange={(e) => onChange('year', e)}
+                    keyboardType="number-pad"
+                    maxLength={4}
+                    onSubmitEditing={() => secondRef.current.focus()}
+                    returnKeyType="done"
+                />
+                <Test
+                    value={month}
+                    onChange={(e) => onChange('month', e)}
+                    keyboardType="number-pad"
+                    maxLength={2}
+                    ref={secondRef}
+                    onSubmitEditing={() => thirdRef.current.focus()}
+                    returnKeyType="done"
+                />
+                <Test
+                    value={date}
+                    onChange={(e) => onChange('date', e)}
+                    keyboardType="number-pad"
+                    maxLength={2}
+                    onSubmitEditing={Keyboard.dismiss}
+                    returnKeyType="done"
+                    ref={thirdRef}
                 />
             </Contents>
         </Total>
