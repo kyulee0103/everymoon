@@ -52,52 +52,49 @@ const Test = styled.TextInput`
 `
 
 function Welcome({navigation}) {
-    const secondRef = useRef()
-    const thirdRef = useRef()
-    const [inputs, setInputs] = useState({
-        year: '',
-        month: '',
-        date: '',
-    })
-    // const [dataList, setDataList] = useState([])
-    const {year, month, date} = inputs
+    // const secondRef = useRef()
+    // const thirdRef = useRef()
+    // const [inputs, setInputs] = useState({
+    //     year: '',
+    //     month: '',
+    //     date: '',
+    // })
+    // // const [dataList, setDataList] = useState([])
+    // const {year, month, date} = inputs
 
-    const onChange = (keyValue, e) => {
-        const {text} = e.nativeEvent
-        setInputs({
-            ...inputs,
-            [keyValue]: text,
-        })
-    }
-    const handleSubmit = async () => {
-        try {
-            const newData = [{year: year, month: month, date: date}]
-            await AsyncStorage.setItem('periodData', JSON.stringify(newData))
-        } catch (e) {
-            console.log('error : ', e)
-        }
-    }
+    // const onChange = (keyValue, e) => {
+    //     const {text} = e.nativeEvent
+    //     setInputs({
+    //         ...inputs,
+    //         [keyValue]: text,
+    //     })
+    // }
+    // const handleSubmit = async () => {
+    //     try {
+    //         const newData = [{year: year, month: month, date: date}]
+    //         await AsyncStorage.setItem('periodData', JSON.stringify(newData))
+    //     } catch (e) {
+    //         console.log('error : ', e)
+    //     }
+    // }
 
-    console.log('year : ', year)
-    console.log('month : ', month)
-    console.log('date : ', date)
+    // console.log('year : ', year)
+    // console.log('month : ', month)
+    // console.log('date : ', date)
     return (
         <Total>
             <Contents>
                 <Big>환영합니다!</Big>
                 <Middle>에브리문을 시작해볼까요?</Middle>
                 <Middle>간단하게 세팅할 수 있어요.</Middle>
-                <Btn>
+                <Btn
+                    onPress={() => {
+                        navigation.push('Birth')
+                    }}
+                >
                     <BtnText>시작하기</BtnText>
                 </Btn>
-                <Button
-                    onPress={() => {
-                        navigation.push('Main')
-                        handleSubmit()
-                    }}
-                    title="홈으로 가기"
-                />
-                <Test
+                {/* <Test
                     value={year}
                     onChange={(e) => onChange('year', e)}
                     keyboardType="number-pad"
@@ -122,7 +119,7 @@ function Welcome({navigation}) {
                     onSubmitEditing={Keyboard.dismiss}
                     returnKeyType="done"
                     ref={thirdRef}
-                />
+                /> */}
             </Contents>
         </Total>
     )

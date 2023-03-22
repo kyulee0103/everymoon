@@ -136,7 +136,7 @@ function Agree({navigation}) {
                 {agree1 && agree2 ? (
                     <Btn
                         onPress={() => {
-                            navigation.push('Start')
+                            navigation.replace('Start')
                         }}
                     >
                         <BtnText>다음</BtnText>
