@@ -14,13 +14,16 @@
         "assetBundlePatterns": ["**/*"],
         "ios": {
             "googleServicesFile": "./GoogleService-Info.plist",
-            "supportsTablet": true
+            "supportsTablet": true,
+            "bundleIdentifier": "com.jay.everymoon"
         },
         "android": {
+            "googleServicesFile": "./google-services.json",
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
-            }
+            },
+            "package": "com.anonymous.everymoon"
         },
         "web": {
             "favicon": "./assets/favicon.png"
