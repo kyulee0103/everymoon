@@ -17,6 +17,14 @@ import Finished from './src/Pages/Finished'
 import Last from './src/Pages/Last'
 import Recent from './src/Pages/Recent'
 import Remember from './src/Pages/Remember'
+import Blood from './src/Pages/Blood'
+import Body from './src/Pages/Body'
+import Feeling from './src/Pages/Feeling'
+import RecordFinished from './src/Pages/RecordFinished'
+import Symptom from './src/Pages/Symptom'
+import Texture from './src/Pages/Texture'
+import Camera from './src/Pages/MyCamera'
+import MyCamera from './src/Pages/MyCamera'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -44,6 +52,13 @@ export default function App() {
                 <Stack.Screen name="Last" component={Last} />
                 <Stack.Screen name="Recent" component={Recent} />
                 <Stack.Screen name="Remember" component={Remember} />
+                <Stack.Screen name="Blood" component={Blood} />
+                <Stack.Screen name="Body" component={Body} />
+                <Stack.Screen name="Feeling" component={Feeling} />
+                <Stack.Screen name="RecordFinished" component={RecordFinished} />
+                <Stack.Screen name="Symptom" component={Symptom} />
+                <Stack.Screen name="Texture" component={Texture} />
+                <Stack.Screen name="MyCamera" component={MyCamera} />
             </Stack.Navigator>
         </NavigationContainer>
     )

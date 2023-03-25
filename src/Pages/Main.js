@@ -55,7 +55,11 @@ function Main({navigation}) {
                 >
                     <BtnText>월경 달력 확인</BtnText>
                 </Btn>
-                <Btn>
+                <Btn
+                    onPressOut={() => {
+                        navigation.push('MyCamera')
+                    }}
+                >
                     <BtnText>생리대 카메라 스캔</BtnText>
                 </Btn>
                 <Btn>

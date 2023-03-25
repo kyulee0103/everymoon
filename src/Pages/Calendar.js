@@ -18,6 +18,13 @@ const Top = styled.Text`
     color: #294747;
     font-weight: 700;
     font-size: 40px;
+    margin-bottom: 50px;
+`
+
+const RealTop = styled.Text`
+    color: #294747;
+    font-weight: 700;
+    font-size: 40px;
 `
 
 const Btn = styled.TouchableOpacity`
@@ -36,18 +43,6 @@ const BtnText = styled.Text`
     color: #ffffff;
     font-weight: 400;
     font-size: 24px;
-`
-
-const Block = styled.View`
-    width: 100%;
-    height: 46px;
-`
-
-const Middle = styled.Text`
-    color: #294747;
-    font-weight: 700;
-    font-size: 30px;
-    margin-top: 18px;
 `
 
 function Calendar({navigation}) {
@@ -89,21 +84,26 @@ function Calendar({navigation}) {
     return (
         <Total>
             <Contents>
-                <Top>
+                <RealTop>
                     {nowMonth + 1}월 {nowDay}일, 오늘
-                </Top>
-                {differenceInDays(mostRecent, date) >= periodDuration && <Top>월경을 시작했군요. 힘들면 말해요.</Top>}
+                </RealTop>
+                {differenceInDays(mostRecent, date) >= periodDuration && (
+                    <Top>월경을 시작했군요.{'\n'}힘들면 말해요.</Top>
+                )}
                 {differenceInDays(mostRecent, date) < periodDuration && isBefore(date, expectation) && (
-                    <Top>예상 월경 시작일이 {differenceInDays(expectation, date)}일 남았어요.</Top>
+                    <Top>
+                        예상 월경 시작일이{'\n'}
+                        {differenceInDays(expectation, date)}일 남았어요.
+                    </Top>
                 )}
 
                 {differenceInDays(mostRecent, date) < periodDuration && isBefore(expectation, date) && (
-                    <Top>예상 월경 시작일이 {differenceInDays(date, expectation)}일 지났어요.</Top>
+                    <Top>
+                        예상 월경 시작일이{'\n'}
+                        {differenceInDays(date, expectation)}일 지났어요.
+                    </Top>
                 )}
 
-                <Top></Top>
-                <Middle>곧 월경이 시작될 거에요.</Middle>
-                <Block />
                 <Btn
                     onPress={() => {
                         navigation.push('New')
@@ -118,7 +118,11 @@ function Calendar({navigation}) {
                 >
                     <BtnText>월경일 편집</BtnText>
                 </Btn>
-                <Btn>
+                <Btn
+                    onPress={() => {
+                        navigation.push('Symptom')
+                    }}
+                >
                     <BtnText>증상, 기분 기록 추가</BtnText>
                 </Btn>
                 <Btn>
