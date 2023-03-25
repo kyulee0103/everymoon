@@ -15,6 +15,7 @@ import Pastdate from './src/Pages/Pastdate'
 import Symptom from './src/Pages/Symptom'
 import Setting from './src/Pages/Setting'
 import Finset from './src/Pages/Finset'
+import Information from './src/Pages/Information'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -41,6 +42,7 @@ export default function App() {
                 <Stack.Screen name="Symptom" component={Symptom} />
                 <Stack.Screen name="Setting" component={Setting} />
                 <Stack.Screen name="Finset" component={Finset} />
+                <Stack.Screen name="Information" component={Information} />
             </Stack.Navigator>
         </NavigationContainer>
     )
