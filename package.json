@@ -21,10 +21,12 @@
     "expo-camera": "~13.2.1",
     "expo-cli": "^6.3.2",
     "expo-dev-client": "~2.1.6",
+    "expo-localization": "~14.1.1",
     "expo-splash-screen": "~0.18.1",
     "expo-status-bar": "~1.4.4",
     "firebase": "^9.18.0",
     "global": "^4.4.0",
+    "i18n-js": "^4.2.3",
     "react": "18.2.0",
     "react-native": "0.71.4",
     "react-native-date-picker": "^4.2.9",
@@ -34,7 +36,9 @@
     "styled-components": "^5.3.8"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@types/i18n-js": "^3.8.4",
+    "eslint-plugin-i18n-json": "^4.0.0"
   },
   "private": true
 }
