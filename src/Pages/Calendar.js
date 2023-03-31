@@ -3,6 +3,7 @@ import {format, getMonth, getDate, differenceInDays, add, isBefore, addDays} fro
 import {useEffect, useState} from 'react'
 import {Text, View} from 'react-native'
 import styled from 'styled-components/native'
+import GoBack from '../Components/GoBack'
 
 const Total = styled.SafeAreaView`
     background-color: #f1d5d4;
@@ -12,7 +13,7 @@ const Total = styled.SafeAreaView`
 const Contents = styled.View`
     margin-left: 15px;
     margin-right: 15px;
-    margin-top: 90px;
+    margin-top: 60px;
 `
 const Top = styled.Text`
     color: #294747;
@@ -96,6 +97,7 @@ function Calendar({navigation}) {
 
     return (
         <Total>
+            <GoBack navigation={navigation} />
             <Contents>
                 <RealTop>
                     {nowMonth + 1}월 {nowDay}일, 오늘
@@ -148,9 +150,9 @@ function Calendar({navigation}) {
                 >
                     <BtnText>증상, 기분 기록 추가</BtnText>
                 </Btn>
-                <Btn>
+                {/* <Btn>
                     <BtnText>성생활 기록 추가</BtnText>
-                </Btn>
+                </Btn> */}
             </Contents>
         </Total>
     )

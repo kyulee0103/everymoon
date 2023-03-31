@@ -3,16 +3,18 @@ import DatePickerModal from 'react-native-modal-datetime-picker'
 import {useState} from 'react'
 import {addDays, differenceInDays, format, getDate, getMonth, getYear} from 'date-fns'
 import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace'
+import GoBack from '../Components/GoBack'
 
 const Total = styled.ScrollView`
     background-color: #f1d5d4;
     flex: 1;
+    padding-top: 50px;
 `
 
 const Contents = styled.View`
     margin-left: 15px;
     margin-right: 15px;
-    margin-top: 134px;
+    margin-top: 60px;
     margin-bottom: 80px;
 `
 const Top = styled.Text`
@@ -128,6 +130,7 @@ function Body({navigation}) {
     }
     return (
         <Total>
+            <GoBack navigation={navigation} />
             <Contents>
                 <Top>몸 상태는{'\n'}어떤가요?</Top>
                 <BtnBox>

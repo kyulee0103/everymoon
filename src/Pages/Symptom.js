@@ -2,6 +2,7 @@ import styled from 'styled-components/native'
 import DatePickerModal from 'react-native-modal-datetime-picker'
 import {useState} from 'react'
 import {addDays, differenceInDays, format, getDate, getMonth, getYear} from 'date-fns'
+import GoBack from '../Components/GoBack'
 
 const Total = styled.SafeAreaView`
     background-color: #f1d5d4;
@@ -102,6 +103,7 @@ function Symptom({navigation}) {
 
     return (
         <Total>
+            <GoBack navigation={navigation} />
             <Contents>
                 <Top>추가하고 싶은{'\n'}정보를 선택해주세요.</Top>
                 {bodyFeeling ? (

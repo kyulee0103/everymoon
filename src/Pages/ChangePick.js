@@ -2,6 +2,7 @@ import styled from 'styled-components/native'
 import {useEffect, useState} from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {Text} from 'react-native'
+import GoBack from '../Components/GoBack'
 
 const Total = styled.SafeAreaView`
     background-color: #f1d5d4;
@@ -74,7 +75,7 @@ const BoxText = styled.Text`
     font-size: 24px;
 `
 
-function ChangePick({navigation: {navigate}}) {
+function ChangePick({navigation}) {
     const [periodData, setPeriodData] = useState([])
     const [pass, setPass] = useState(false)
     useEffect(() => {
@@ -106,6 +107,7 @@ function ChangePick({navigation: {navigate}}) {
 
     return (
         <Total>
+            <GoBack navigation={navigation} />
             <Contents>
                 <Top>수정하고 싶은 {'\n'}날짜를 선택해주세요.</Top>
                 <Middle>최근 월경 순</Middle>
@@ -119,7 +121,7 @@ function ChangePick({navigation: {navigate}}) {
                 {pass !== false ? (
                     <Btn
                         onPress={() => {
-                            navigate('ChangeDate', {dates: {pass}})
+                            navigation.navigate('ChangeDate', {dates: {pass}})
                         }}
                     >
                         <BtnText>선택했어요</BtnText>

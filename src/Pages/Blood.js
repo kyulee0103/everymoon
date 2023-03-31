@@ -2,6 +2,7 @@ import styled from 'styled-components/native'
 import DatePickerModal from 'react-native-modal-datetime-picker'
 import {useState} from 'react'
 import {addDays, differenceInDays, format, getDate, getMonth, getYear} from 'date-fns'
+import GoBack from '../Components/GoBack'
 
 const Total = styled.SafeAreaView`
     background-color: #f1d5d4;
@@ -11,7 +12,7 @@ const Total = styled.SafeAreaView`
 const Contents = styled.View`
     margin-left: 15px;
     margin-right: 15px;
-    margin-top: 90px;
+    margin-top: 60px;
     margin-bottom: 80px;
 `
 const Top = styled.Text`
@@ -110,8 +111,9 @@ function Blood({navigation}) {
     }
     return (
         <Total>
+            <GoBack navigation={navigation} />
             <Contents>
-                <Top>분비물과 동반되는{'\n'}증상이 있나요?</Top>
+                <Top>어떤 양상의{'\n'}출혈이었나요?</Top>
                 <BtnBox>
                     {types.map((data, idx) => (
                         <MiniBox key={idx} isClicked={openList[idx]} onPress={() => handleChange(idx)}>
@@ -119,6 +121,7 @@ function Blood({navigation}) {
                         </MiniBox>
                     ))}
                 </BtnBox>
+
                 <Nothing
                     isClicked={nothing}
                     onPress={() => {

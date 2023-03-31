@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react'
 import DatePickerModal from 'react-native-modal-datetime-picker'
 import {addDays, differenceInDays, format, getDate, getMonth, getYear} from 'date-fns'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import GoBack from '../Components/GoBack'
 
 const Total = styled.SafeAreaView`
     background-color: #f1d5d4;
@@ -123,10 +124,9 @@ function New({navigation}) {
     }, [])
     return (
         <Total>
+            <GoBack navigation={navigation} />
             <Contents>
-                <Top>최근 월경 날짜를</Top>
-                <Top>입력해주세요.</Top>
-                <Block />
+                <Top>최근 월경 날짜를{'\n'}입력해주세요.</Top>
                 <Middle>월경 시작</Middle>
                 <PressCustom onPress={onPressDate}>
                     <DateText>{format(startDate, 'yyyy / MM / dd')} </DateText>
