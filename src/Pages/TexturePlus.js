@@ -3,7 +3,7 @@ import DatePickerModal from 'react-native-modal-datetime-picker'
 import {useState} from 'react'
 import {addDays, differenceInDays, format, getDate, getMonth, getYear} from 'date-fns'
 
-const Total = styled.ScrollView`
+const Total = styled.SafeAreaView`
     background-color: #f1d5d4;
     flex: 1;
 `
@@ -11,7 +11,7 @@ const Total = styled.ScrollView`
 const Contents = styled.View`
     margin-left: 15px;
     margin-right: 15px;
-    margin-top: 134px;
+    margin-top: 90px;
     margin-bottom: 80px;
 `
 const Top = styled.Text`
@@ -91,8 +91,8 @@ const Nothing = styled.TouchableOpacity`
     background-color: ${(props) => (props.isClicked ? '#294747' : '#f1d5d4')};
 `
 
-function Feeling({navigation}) {
-    const types = ['불안, 초조', '예민, 짜증', '우울, 무기력', '기억력, 집중력 저하', '수면장애']
+function TexturePlus({navigation}) {
+    const types = ['냄새가 좋지 않다', '외음부가 가렵다', '소변 볼 때 따갑다']
     const [openList, setOpenList] = useState(Array.from({length: types.length}).fill(false))
     const [nothing, setNothing] = useState(false)
 
@@ -111,7 +111,7 @@ function Feeling({navigation}) {
     return (
         <Total>
             <Contents>
-                <Top>기분 상태는{'\n'}어떤가요?</Top>
+                <Top>분비물과 동반되는{'\n'}증상이 있나요?</Top>
                 <BtnBox>
                     {types.map((data, idx) => (
                         <MiniBox key={idx} isClicked={openList[idx]} onPress={() => handleChange(idx)}>
@@ -146,4 +146,4 @@ function Feeling({navigation}) {
     )
 }
 
-export default Feeling
+export default TexturePlus

@@ -4,6 +4,8 @@ import {addDays, differenceInDays, format, getDate, getMonth, getYear} from 'dat
 import React, {useState, useEffect} from 'react'
 import {Text, View, TouchableOpacity, ImageBackground} from 'react-native'
 import {Camera} from 'expo-camera'
+import ml from '@react-native-firebase/ml'
+import axios from 'axios'
 
 const Total = styled.SafeAreaView`
     background-color: #f1d5d4;
@@ -64,8 +66,30 @@ function MyCamera({navigation}) {
         let photo = await camera.takePictureAsync()
         setPreviewVisible(true)
         setCapturedImage(photo)
-        // let size = await camera.getAvailablePictureSizesAsync((ratio = '1:1'))
-        // console.log(size)
+        const localUri = photo.uri
+        const fileName = localUri.split('/').pop()
+        const match = /\.(\w+)$/.exec(fileName ?? '')
+        const type = match ? `image/${match[1]}` : `image`
+        const formData = new FormData()
+        formData.append('image', {uri: localUri, name: fileName, type})
+        console.log(formData)
+
+        await axios({
+            method: 'post',
+            url: 'http://34.64.180.70:8080/predict',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            data: formData,
+        })
+            .then(function (response) {
+                console.log('response : ', response)
+                console.log('성공인가?')
+            })
+            .catch(function (error) {
+                console.log('error : ', error)
+                console.log('에러면 말해줘')
+            })
     }
 
     return (
@@ -79,7 +103,7 @@ function MyCamera({navigation}) {
                 <ImageBackground
                     source={{uri: capturedImage && capturedImage.uri}}
                     style={{
-                        flex: 1,
+                        flex: 0.4,
                         ratio: {1: 1},
                     }}
                 >
@@ -121,7 +145,7 @@ function MyCamera({navigation}) {
             ) : (
                 <View style={{flex: 1}}>
                     <Camera
-                        style={{flex: 1}}
+                        style={{width: 400, height: 600, marginLeft: 'auto', marginRight: 'auto', marginTop: 50}}
                         type={type}
                         ratio={'1:1'}
                         ref={(ref) => {
@@ -130,7 +154,7 @@ function MyCamera({navigation}) {
                     ></Camera>
                     <View
                         style={{
-                            flex: 0.2,
+                            flex: 0.9,
                             backgroundColor: 'transparent',
                             flexDirection: 'row',
                         }}

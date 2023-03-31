@@ -90,6 +90,8 @@ PODS:
     - expo-dev-menu/SafeAreaView
   - ExpoKeepAwake (12.0.1):
     - ExpoModulesCore
+  - ExpoLocalization (14.1.1):
+    - ExpoModulesCore
   - ExpoModulesCore (1.2.6):
     - React-Core
     - React-RCTAppDelegate
@@ -510,6 +512,9 @@ PODS:
     - Firebase/Database (= 10.6.0)
     - React-Core
     - RNFBApp
+  - RNFBML (17.4.0):
+    - React-Core
+    - RNFBApp
   - RNScreens (3.20.0):
     - React-Core
     - React-RCTImage
@@ -531,6 +536,7 @@ DEPENDENCIES:
   - expo-dev-menu (from `../node_modules/expo-dev-menu`)
   - expo-dev-menu-interface (from `../node_modules/expo-dev-menu-interface/ios`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
+  - ExpoLocalization (from `../node_modules/expo-localization/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
   - EXUpdatesInterface (from `../node_modules/expo-updates-interface/ios`)
@@ -574,6 +580,7 @@ DEPENDENCIES:
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBDatabase (from `../node_modules/@react-native-firebase/database`)"
+  - "RNFBML (from `../node_modules/@react-native-firebase/ml`)"
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -622,6 +629,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-dev-menu-interface/ios"
   ExpoKeepAwake:
     :path: "../node_modules/expo-keep-awake/ios"
+  ExpoLocalization:
+    :path: "../node_modules/expo-localization/ios"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core"
   EXSplashScreen:
@@ -704,6 +713,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/auth"
   RNFBDatabase:
     :path: "../node_modules/@react-native-firebase/database"
+  RNFBML:
+    :path: "../node_modules/@react-native-firebase/ml"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   Yoga:
@@ -725,6 +736,7 @@ SPEC CHECKSUMS:
   expo-dev-menu: 9f454e0353860c80c55a9805e16dfebf4fd2da5e
   expo-dev-menu-interface: 6c82ae323c4b8724dead4763ce3ff24a2108bdb1
   ExpoKeepAwake: 69f5f627670d62318410392d03e0b5db0f85759a
+  ExpoLocalization: f26cd431ad9ea3533c5b08c4fabd879176a794bb
   ExpoModulesCore: 6e0259511f4c4341b6b8357db393624df2280828
   EXSplashScreen: cd7fb052dff5ba8311d5c2455ecbebffe1b7a8ca
   EXUpdatesInterface: dd699d1930e28639dcbd70a402caea98e86364ca
@@ -777,6 +789,7 @@ SPEC CHECKSUMS:
   RNFBApp: dd22a306a31189e99126a35962498c83b06520ab
   RNFBAuth: c0dbc7680a3181e460fdc2b4ba80851363c6946d
   RNFBDatabase: 092d98672c640241688cc9f30e80576b075e2ff6
+  RNFBML: 2fdebccf20764feb9cdb37a7510bf670e03d771f
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0
 

@@ -44,6 +44,18 @@ const BtnText = styled.Text`
     font-weight: 400;
     font-size: 24px;
 `
+const Middle = styled.Text`
+    color: #294747;
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: 50px;
+`
+const Top2 = styled.Text`
+    color: #294747;
+    font-weight: 700;
+    font-size: 40px;
+    margin-bottom: 20px;
+`
 
 function Calendar({navigation}) {
     let date = new Date()
@@ -75,11 +87,12 @@ function Calendar({navigation}) {
         }
         getPeriodData()
     }, [])
-    // console.log('가장 최근 생리 : ', mostRecent)
-    // console.log('today : ', date)
-    // console.log('생리 기간 : ', periodDuration)
-    // console.log('예상 다음 생리 날짜 : ', expectation)
-    // console.log('날짜 차이 : ', differenceInDays(mostRecent, date))
+    console.log('가장 최근 생리 : ', mostRecent)
+    console.log('today : ', date)
+    console.log('생리 기간 : ', periodDuration)
+    console.log('예상 다음 생리 날짜 : ', expectation)
+    console.log('날짜 차이 : ', differenceInDays(date, mostRecent))
+    console.log('nyang : ', differenceInDays(expectation, date))
 
     return (
         <Total>
@@ -87,22 +100,32 @@ function Calendar({navigation}) {
                 <RealTop>
                     {nowMonth + 1}월 {nowDay}일, 오늘
                 </RealTop>
-                {differenceInDays(mostRecent, date) >= periodDuration && (
-                    <Top>월경을 시작했군요.{'\n'}힘들면 말해요.</Top>
+                {differenceInDays(date, mostRecent) <= periodDuration && differenceInDays(date, mostRecent) >= 0 && (
+                    <Top>월경 때문에 힘들죠?{'\n'}힘들면 말해요.</Top>
                 )}
-                {differenceInDays(mostRecent, date) < periodDuration && isBefore(date, expectation) && (
-                    <Top>
-                        예상 월경 시작일이{'\n'}
-                        {differenceInDays(expectation, date)}일 남았어요.
-                    </Top>
+                {differenceInDays(expectation, date) === 0 && (
+                    <View>
+                        <Top2>월경 예정일이에요</Top2>
+                        <Middle>월경을 시작했다면 {'\n'}월경일 등록을 해주세요.</Middle>
+                    </View>
                 )}
+                {differenceInDays(expectation, date) !== 0 &&
+                    differenceInDays(date, mostRecent) > periodDuration &&
+                    isBefore(date, expectation) && (
+                        <Top>
+                            예상 월경 시작일이{'\n'}
+                            {differenceInDays(expectation, date)}일 남았어요.
+                        </Top>
+                    )}
 
-                {differenceInDays(mostRecent, date) < periodDuration && isBefore(expectation, date) && (
-                    <Top>
-                        예상 월경 시작일이{'\n'}
-                        {differenceInDays(date, expectation)}일 지났어요.
-                    </Top>
-                )}
+                {differenceInDays(expectation, date) !== 0 &&
+                    differenceInDays(date, mostRecent) > periodDuration &&
+                    isBefore(expectation, date) && (
+                        <Top>
+                            예상 월경 시작일이{'\n'}
+                            {differenceInDays(date, expectation)}일 지났어요.
+                        </Top>
+                    )}
 
                 <Btn
                     onPress={() => {

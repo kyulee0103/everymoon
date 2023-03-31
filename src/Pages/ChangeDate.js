@@ -67,11 +67,11 @@ const DateText = styled.Text`
 `
 
 function ChangeDate({navigation, route}) {
+    const [periodData, setPeriodData] = useState([])
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(startDate)
     const [visible, setVisible] = useState(false)
     const [visible2, setVisible2] = useState(false)
-    const [currentData, setCurrentData] = useState()
     console.log(route.params.dates.pass)
     const onPressDate = () => {
         setVisible(true)
@@ -88,6 +88,44 @@ function ChangeDate({navigation, route}) {
     const onCancel2 = () => {
         setVisible2(false)
     }
+
+    const handleSubmit = async () => {
+        try {
+            const newData = [
+                ...periodData.slice(0, route.params.dates.pass),
+                {year: getYear(startDate), month: getMonth(startDate) + 1, date: getDate(startDate)},
+                ...periodData.slice(route.params.dates.pass + 1),
+            ]
+            await AsyncStorage.setItem('periodData', JSON.stringify(newData))
+        } catch (e) {
+            console.log('error : ', e)
+        }
+    }
+
+    useEffect(() => {
+        const getPeriodData = async () => {
+            try {
+                const storageData = JSON.parse(await AsyncStorage.getItem('periodData'))
+                if (storageData) {
+                    setPeriodData(storageData)
+                    const todayDate = new Date(
+                        `${storageData[route.params.dates.pass].year}-${storageData[route.params.dates.pass].month}-${
+                            storageData[route.params.dates.pass].date
+                        }`,
+                    )
+                    setStartDate(todayDate)
+                    setEndDate(addDays(todayDate, 5))
+                }
+            } catch (e) {
+                alert('데이터가 없어요')
+                console.log(e)
+            }
+        }
+        getPeriodData()
+    }, [])
+
+    console.log('before : ', periodData.slice(1))
+
     return (
         <Total>
             <Contents>
@@ -126,7 +164,12 @@ function ChangeDate({navigation, route}) {
                     textColor="black"
                     locale="ko"
                 />
-                <Btn>
+                <Btn
+                    onPress={() => {
+                        handleSubmit()
+                        navigation.replace('Main')
+                    }}
+                >
                     <BtnText>입력했어요</BtnText>
                 </Btn>
             </Contents>

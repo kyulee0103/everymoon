@@ -25,6 +25,8 @@ import Symptom from './src/Pages/Symptom'
 import Texture from './src/Pages/Texture'
 import Camera from './src/Pages/MyCamera'
 import MyCamera from './src/Pages/MyCamera'
+import TexturePlus from './src/Pages/TexturePlus'
+import Information from './src/Pages/Information'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -58,7 +60,9 @@ export default function App() {
                 <Stack.Screen name="RecordFinished" component={RecordFinished} />
                 <Stack.Screen name="Symptom" component={Symptom} />
                 <Stack.Screen name="Texture" component={Texture} />
+                <Stack.Screen name="TexturePlus" component={TexturePlus} />
                 <Stack.Screen name="MyCamera" component={MyCamera} />
+                <Stack.Screen name="Information" component={Information} />
             </Stack.Navigator>
         </NavigationContainer>
     )

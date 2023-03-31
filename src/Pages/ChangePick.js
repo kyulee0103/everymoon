@@ -101,7 +101,7 @@ function ChangePick({navigation: {navigate}}) {
                 return {...period, checked: false}
             }),
         )
-        setPass(periodData[idx])
+        setPass(idx)
     }
 
     return (

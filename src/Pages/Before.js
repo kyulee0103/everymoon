@@ -145,7 +145,7 @@ function Before({navigation}) {
                 <Btn
                     onPress={() => {
                         handleSubmit()
-                        navigation.push('Last')
+                        navigation.replace('Last')
                     }}
                 >
                     <BtnText>입력했어요</BtnText>

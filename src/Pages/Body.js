@@ -13,6 +13,7 @@ const Contents = styled.View`
     margin-left: 15px;
     margin-right: 15px;
     margin-top: 134px;
+    margin-bottom: 80px;
 `
 const Top = styled.Text`
     color: #294747;
@@ -25,6 +26,18 @@ const Btn = styled.TouchableOpacity`
     width: 100%;
     height: 61px;
     background: #294747;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-top: 18px;
+`
+
+const Btn2 = styled.View`
+    width: 100%;
+    height: 61px;
+    background: #022e2e80;
     border-radius: 15px;
     display: flex;
     justify-content: center;
@@ -113,7 +126,6 @@ function Body({navigation}) {
             }),
         )
     }
-    console.log(openList)
     return (
         <Total>
             <Contents>
@@ -134,9 +146,19 @@ function Body({navigation}) {
                 >
                     <MiniText isClicked={nothing}>해당 사항 없음</MiniText>
                 </Nothing>
-                <Btn>
-                    <BtnText>선택했어요</BtnText>
-                </Btn>
+                {nothing || openList.includes(true) ? (
+                    <Btn
+                        onPress={() => {
+                            navigation.push('Feeling')
+                        }}
+                    >
+                        <BtnText>선택했어요</BtnText>
+                    </Btn>
+                ) : (
+                    <Btn2>
+                        <BtnText>상태를 골라주세요</BtnText>
+                    </Btn2>
+                )}
             </Contents>
         </Total>
     )

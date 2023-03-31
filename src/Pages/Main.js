@@ -15,6 +15,7 @@ const Top = styled.Text`
     color: #294747;
     font-weight: 700;
     font-size: 40px;
+    margin-bottom: 46px;
 `
 
 const Btn = styled.TouchableOpacity`
@@ -44,10 +45,9 @@ function Main({navigation}) {
     return (
         <Total>
             <Contents>
-                <Top>당신의 월경권,</Top>
-                <Top>이젠 에브리문이</Top>
-                <Top>보장할게요.</Top>
-                <Block />
+                <Top>
+                    당신의 월경권,{'\n'}이젠 에브리문이{'\n'}보장할게요.
+                </Top>
                 <Btn
                     onPressOut={() => {
                         navigation.push('Calendar')
@@ -65,7 +65,11 @@ function Main({navigation}) {
                 <Btn>
                     <BtnText>월경 주기 알람 설정</BtnText>
                 </Btn>
-                <Btn>
+                <Btn
+                    onPress={() => {
+                        navigation.push('Information')
+                    }}
+                >
                     <BtnText>생리대 사용법</BtnText>
                 </Btn>
             </Contents>

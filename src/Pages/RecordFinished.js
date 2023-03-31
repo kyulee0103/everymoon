@@ -42,9 +42,14 @@ function RecordFinished({navigation}) {
     return (
         <Total>
             <Contents>
-                <Top>
-                    첫째, {'\n'}생년 월일을{'\n'}입력해주세요.
-                </Top>
+                <Top>기록 완료!</Top>
+                <Btn
+                    onPress={() => {
+                        navigation.replace('Main')
+                    }}
+                >
+                    <BtnText>처음으로 돌아가기</BtnText>
+                </Btn>
             </Contents>
         </Total>
     )
